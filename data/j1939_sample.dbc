@@ -1,0 +1,74 @@
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: Engine_ECU Trans_ECU BMS_ECU Instrument_Cluster
+
+BO_ 2364540158 EEC1: 8 Engine_ECU
+ SG_ Engine_Speed : 24|16@1+ (0.125,0) [0|8031.875] "rpm" Instrument_Cluster,Trans_ECU
+ SG_ Actual_Engine_Torque : 8|8@1+ (1,-125) [-125|125] "%" Instrument_Cluster
+ SG_ Drivers_Demand_Torque : 16|8@1+ (1,-125) [-125|125] "%" Instrument_Cluster
+ SG_ Engine_Starter_Mode : 4|4@1+ (1,0) [0|15] "" Instrument_Cluster
+
+BO_ 2365443326 EEC2: 8 Engine_ECU
+ SG_ Accelerator_Pedal_Pos : 8|8@1+ (0.4,0) [0|100] "%" Instrument_Cluster
+ SG_ Engine_Load : 16|8@1+ (1,0) [0|250] "%" Instrument_Cluster
+ SG_ Road_Speed_Limit_Status : 0|2@1+ (1,0) [0|3] "" Instrument_Cluster
+ SG_ Accel_Pedal_Kickdown : 2|2@1+ (1,0) [0|3] "" Instrument_Cluster
+
+BO_ 2566844926 ET1: 8 Engine_ECU
+ SG_ Engine_Coolant_Temp : 8|8@1+ (1,-40) [-40|210] "degC" Instrument_Cluster
+ SG_ Engine_Fuel_Temp : 16|8@1+ (1,-40) [-40|210] "degC" Instrument_Cluster
+ SG_ Engine_Oil_Temp : 32|16@1+ (0.03125,-273) [-273|1735] "degC" Instrument_Cluster
+
+BO_ 2566777086 EFL_P1: 8 Engine_ECU
+ SG_ Engine_Fuel_Delivery_Pres : 8|8@1+ (4,0) [0|1000] "kPa" Instrument_Cluster
+ SG_ Engine_Oil_Pressure : 16|8@1+ (4,0) [0|1000] "kPa" Instrument_Cluster
+
+BO_ 2566903806 VEP1: 8 Engine_ECU
+ SG_ Battery_Voltage : 16|16@1+ (0.05,0) [0|3212.75] "V" Instrument_Cluster
+ SG_ Alternator_Current : 32|16@1+ (1,-1600) [-1600|1612.5] "A" Instrument_Cluster
+
+BO_ 2566910206 CCVS1: 8 Trans_ECU
+ SG_ Wheel_Speed : 8|16@1+ (0.00390625,0) [0|250.996] "km/h" Instrument_Cluster
+ SG_ Cruise_Control_Active : 0|2@1+ (1,0) [0|3] "" Instrument_Cluster
+ SG_ Cruise_Set_Speed : 24|8@1+ (0.805,0) [0|204.8] "km/h" Instrument_Cluster
+ SG_ Brake_Switch : 4|2@1+ (1,0) [0|3] "" Instrument_Cluster
+
+BO_ 2364473086 BMS1: 8 BMS_ECU
+ SG_ HV_Battery_Voltage : 0|16@1+ (0.05,0) [0|3212.75] "V" Instrument_Cluster
+ SG_ HV_Battery_Current : 16|16@1+ (0.05,-1600) [-1600|1612.75] "A" Instrument_Cluster
+ SG_ Battery_State_of_Charge : 32|8@1+ (0.4,0) [0|100] "%" Instrument_Cluster
+ SG_ Battery_State_of_Health : 40|8@1+ (0.4,0) [0|100] "%" Instrument_Cluster
+ SG_ Battery_Pack_Temp : 48|8@1+ (1,-40) [-40|210] "degC" Instrument_Cluster
+
+BO_ 2364473342 BMS2: 8 BMS_ECU
+ SG_ Cell_Voltage_Max : 0|16@1+ (0.001,0) [0|5] "V" Instrument_Cluster
+ SG_ Cell_Voltage_Min : 16|16@1+ (0.001,0) [0|5] "V" Instrument_Cluster
+ SG_ Cell_Voltage_Avg : 32|16@1+ (0.001,0) [0|5] "V" Instrument_Cluster
+ SG_ Cell_Temp_Max : 48|8@1+ (1,-40) [-40|210] "degC" Instrument_Cluster
+
+BO_ 2364473598 BMS3: 8 BMS_ECU
+ SG_ Charge_Power_Limit : 0|16@1+ (0.5,0) [0|32767.5] "W" Instrument_Cluster
+ SG_ Discharge_Power_Limit : 16|16@1+ (0.5,0) [0|32767.5] "W" Instrument_Cluster
+ SG_ Isolation_Resistance : 32|16@1+ (1,0) [0|64255] "kOhm" Instrument_Cluster
+
+CM_ SG_ 2364540158 Engine_Speed "SPN 190 - Engine crankshaft rotational speed";
+CM_ SG_ 2364540158 Actual_Engine_Torque "SPN 513 - Actual engine torque as percent of reference";
+CM_ SG_ 2364540158 Drivers_Demand_Torque "SPN 512 - Torque demanded by the driver";
+CM_ SG_ 2365443326 Accelerator_Pedal_Pos "SPN 91 - Ratio of actual position to max position of accelerator pedal";
+CM_ SG_ 2365443326 Engine_Load "SPN 92 - Percent of maximum indicated torque available";
+CM_ SG_ 2566844926 Engine_Coolant_Temp "SPN 110 - Temperature of liquid found in engine cooling system";
+CM_ SG_ 2566844926 Engine_Oil_Temp "SPN 175 - Temperature of the engine lubricant";
+CM_ SG_ 2566777086 Engine_Oil_Pressure "SPN 100 - Gage pressure of oil in engine lubrication system";
+CM_ SG_ 2566903806 Battery_Voltage "SPN 168 - Electrical potential of the battery";
+CM_ SG_ 2566910206 Wheel_Speed "SPN 84 - Wheel-based vehicle speed";
+CM_ SG_ 2364473086 HV_Battery_Voltage "SPN 5827 - High voltage battery pack terminal voltage";
+CM_ SG_ 2364473086 Battery_State_of_Charge "SPN 1637 - Ratio of available charge to total capacity";
+CM_ SG_ 2364473086 Battery_State_of_Health "SPN 5829 - Ratio of actual capacity to rated capacity";
+CM_ SG_ 2364473342 Cell_Voltage_Max "SPN 5831 - Maximum cell voltage in the battery pack";
+CM_ SG_ 2364473342 Cell_Voltage_Min "SPN 5832 - Minimum cell voltage in the battery pack";
+CM_ SG_ 2364473598 Isolation_Resistance "SPN 5834 - Isolation resistance between HV bus and chassis ground";
+
