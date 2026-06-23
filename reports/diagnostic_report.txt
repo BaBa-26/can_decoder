@@ -1,6 +1,6 @@
 ======================================================================
   CAN BUS DIAGNOSTIC REPORT
-  Generated: 2026-06-23 02:02:50
+  Generated: 2026-06-23 12:24:44
   Total frames decoded: 94
   Unique signals: 14
   Time range: 0.000s – 0.330s
