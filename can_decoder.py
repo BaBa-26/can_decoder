@@ -279,7 +279,7 @@ def generate_report(df: pd.DataFrame, output_path: str):
 
     report_text = "\n".join(lines)
 
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(report_text)
 
     print(report_text)
