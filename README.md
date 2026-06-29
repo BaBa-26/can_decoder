@@ -1,6 +1,6 @@
 # CAN Bus Signal Decoder — J1939 & EV Edition
 
-A Python tool for decoding J1939 CAN bus data using DBC files.  
+A Python tool for decoding J1939 CAN bus data using DBC files, with an interactive Streamlit web dashboard.  
 Built to demonstrate hands-on understanding of automotive and EV communication protocols.
 
 ---
@@ -18,6 +18,7 @@ This tool:
 - Parses a CAN log file (`.csv`) and decodes every frame automatically
 - Generates a diagnostic summary report with min/avg/max per signal
 - Highlights EV-specific signals: SoC, cell voltages, HV pack voltage, isolation resistance
+- **Interactive web dashboard** with real-time Plotly charts and gauges
 
 ---
 
@@ -57,7 +58,8 @@ This tool:
 
 ```
 can-decoder/
-├── can_decoder.py          ← main tool (all logic here)
+├── can_decoder.py          ← CLI tool (all core logic)
+├── dashboard.py            ← Streamlit interactive web dashboard
 ├── data/
 │   ├── j1939_sample.dbc    ← DBC file with real J1939 + EV signals
 │   └── sample_log.csv      ← sample CAN log frames
@@ -73,15 +75,40 @@ can-decoder/
 ## Installation
 
 ```bash
-git clone https://github.com/[yourname]/can-decoder
-cd can-decoder
+git clone https://github.com/BaBa-26/can_decoder
+cd can_decoder
 pip install -r requirements.txt
-python can_decoder.py
 ```
 
 ---
 
-## Usage — interactive menu
+## Usage
+
+### Interactive web dashboard (recommended)
+
+```bash
+streamlit run dashboard.py
+```
+
+Opens a browser UI with five pages:
+
+| Page | Description |
+|---|---|
+| **Overview** | DBC KPIs, message table, signal reading distribution chart, J1939 protocol reference |
+| **Signal Browser** | Searchable table of all 31 SPNs; select any signal to see specs + time-series chart |
+| **Frame Decoder** | Paste a CAN ID + data bytes (or pick a preset) → decoded table + animated gauges |
+| **Time-Series** | Multi-signal line chart with normalize toggle, time-range slider, and sparklines |
+| **EV Battery** | BMS snapshot metrics, animated gauges, cell-voltage spread, dual-axis SoC vs HV voltage |
+
+You can also upload your own DBC or CSV log via the sidebar.
+
+---
+
+### CLI menu
+
+```bash
+python can_decoder.py
+```
 
 ```
   [1] List all signals in the DBC (full SPN reference)
@@ -91,7 +118,7 @@ python can_decoder.py
   [5] Show EV battery signals only
 ```
 
-### Example: decode a raw frame
+#### Example: decode a raw frame
 
 ```
 Enter CAN ID (hex): 0CEEFEFE
@@ -135,6 +162,7 @@ Battery_Pack_Temp          40.0    degC
 - Signal decoding formula: `physical_value = raw × scale + offset`
 - EV-specific SPNs: SoC (1637), HV voltage (5827), isolation resistance (5834)
 - How DTCs reference SPNs: `SPN + FMI = one fault code`
+- Building interactive automotive dashboards with Streamlit + Plotly
 
 ---
 
@@ -144,16 +172,17 @@ Battery_Pack_Temp          40.0    degC
 cantools>=39.0.0
 pandas>=2.0.0
 tabulate>=0.9.0
+streamlit>=1.35.0
+plotly>=5.22.0
 ```
 
 ---
 
 ## Next steps
 
-- [ ] Add matplotlib plots (RPM over time, SoC curve)
 - [ ] Add DTC fault code lookup by SPN + FMI
 - [ ] Connect to live CAN bus via `python-can` + USB adapter
-- [ ] Add Streamlit dashboard UI
+- [ ] Add replay mode to animate signal values over time
 
 ---
 
